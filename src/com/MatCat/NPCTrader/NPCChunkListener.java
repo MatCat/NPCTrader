@@ -1,5 +1,5 @@
 package com.MatCat.NPCTrader;
-
+// I dont think this is even getting called.
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.WorldListener;
@@ -11,6 +11,7 @@ public class NPCChunkListener extends WorldListener {
 		plugin = instance;
 	}
 	public void OnChunkLoad(ChunkLoadEvent event) {
+		System.out.println("Chunk Load Event: " + event.getChunk().toString());
 		for (String NPCID : plugin.npcm.NPCMap().keySet()) {
 			NPCEntity npc = plugin.npcm.getNPC(NPCID);
 			if (npc.getBukkitEntity().getWorld().getChunkAt(npc.getBukkitEntity().getLocation()) == event.getChunk()) {

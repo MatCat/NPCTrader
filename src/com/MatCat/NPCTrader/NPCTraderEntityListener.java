@@ -55,6 +55,7 @@ public class NPCTraderEntityListener extends EntityListener {
 			//System.out.println(npc.displayName);
 			if (npc != null && event.getTarget() instanceof Player) {
 				System.out.println("We are inside of the IF, NPC != null");
+				npc.ReDraw = true; // Fail-safe reload system.
 				if (nevent.getNpcReason() == NpcTargetReason.CLOSEST_PLAYER) {
 					Player p = (Player) event.getTarget();
 					p.sendMessage("<" + npc.displayName

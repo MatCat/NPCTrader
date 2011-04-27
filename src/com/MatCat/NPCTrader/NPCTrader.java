@@ -74,7 +74,7 @@ public class NPCTrader extends JavaPlugin {
 	private static Server Server = null;
 	public static PermissionHandler Permissions = null;
 
-	private final NPCTraderPlayerListener playerListener = new NPCTraderPlayerListener(
+	private NPCTraderPlayerListener playerListener = new NPCTraderPlayerListener(
 			this);
 	private NPCChunkListener chunkListener = new NPCChunkListener(this);
 	public NPCTraderEntityListener NEL;
@@ -342,7 +342,8 @@ public class NPCTrader extends JavaPlugin {
 			// Event.Priority.Monitor, this);
 			 * 
 			 */
-			pm.registerEvent(Type.CHUNK_LOAD, this.chunkListener, Event.Priority.Monitor, this);
+			// pm.registerEvent(Type.CHUNK_LOAD, this.chunkListener, Event.Priority.Monitor, this);
+			pm.registerEvent(Type.PLAYER_MOVE, this.playerListener, Event.Priority.Monitor,this);
 			//pm.registerEvent(Type.CHUNK_UNLOAD, this.playerListener, Event.Priority.Monitor, this);
 
 			NEL = new NPCTraderEntityListener(this);

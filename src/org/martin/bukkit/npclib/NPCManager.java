@@ -158,7 +158,7 @@ public class NPCManager {
 		NPCEntity npc = getNPC(id);
 		if (npc != null) {
 			String Name = npc.name;
-			Location l = new Location((World) npc.world, npc.locX, npc.locY, npc.locZ, npc.pitch,npc.yaw);
+			Location l = new Location(npc.getBukkitEntity().getWorld(), npc.locX, npc.locY, npc.locZ, npc.pitch,npc.yaw);
 			this.despawnById(id);
 			return this.spawnNPC(Name, l, id);
 		} else {

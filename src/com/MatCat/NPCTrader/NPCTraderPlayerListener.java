@@ -1,5 +1,6 @@
 package com.MatCat.NPCTrader;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerListener;
@@ -15,16 +16,9 @@ public class NPCTraderPlayerListener extends PlayerListener {
 	}
 	
 	public void onPlayerMove(PlayerMoveEvent event) {
-		double X = event.getTo().getX();
-		double Y = event.getTo().getY();
-		double Z = event.getTo().getZ();
+		Location pl = event.getTo();
 		for (String NPCID : plugin.npcm.NPCMap().keySet()) {
 			NPCEntity npc = plugin.npcm.getNPC(NPCID);
-			double X2 = npc.getBukkitEntity().getLocation().getX();
-			double Y2 = npc.getBukkitEntity().getLocation().getY();
-			double Z2 = npc.getBukkitEntity().getLocation().getZ();
-			// We need to go through every player on and see if ANYONE is inside
-			// 100 block radious
 			Player ep = event.getPlayer();
 			// Player[] pl = plugin.getServer().getOnlinePlayers();
 
@@ -34,20 +28,23 @@ public class NPCTraderPlayerListener extends PlayerListener {
 			// Z = player.getLocation().getZ();
 			//
 			// }
-			X = ep.getLocation().getX();
-			Y = ep.getLocation().getY();
-			Z = ep.getLocation().getZ();
+			double X = ep.getLocation().getX();
+			double Y = ep.getLocation().getY();
+			double Z = ep.getLocation().getZ();
 
-			if (distance(X, Y, Z, X2, Y2, Z2) < 25) {
+			if (distance(X, Y, Z, npc.locX, npc.locY, npc.locZ) < 25) {
+				 //System.out.println("NPC " + npc.displayName
+				//		 + " within 25 blocks... Logic to be determained...");
 				if (npc.ReDraw) {
-					// System.out.println("NPC " + npc.getName()
-					// + " within 100 blocks... revisualizing");
+					 System.out.println("NPC " + npc.displayName
+					 + " within 25 blocks... revisualizing");
 					plugin.npcm.ReDraw(npc.ID);
 					// NPCTraderMySQL NPCDB = new NPCTraderMySQL();
 /*					boolean dbc = plugin.NPCDB.dbConnect();
 					plugin.NPCDB.SetupNPC(Integer.parseInt(NPCID), plugin,
 							plugin.getServer().getWorlds());
 					plugin.NPCDB.dbClose();*/
+					npc.ReDraw = false;
 				}
 
 			}
