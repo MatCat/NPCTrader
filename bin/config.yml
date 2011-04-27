@@ -1,0 +1,45 @@
+# NPC Trader Configuration File
+
+# Price settings.  ItemSlot is the cost per item slot, Units are how much each unit per slot costs.   The formula
+# is ((Units * Units Cost) * ItemSlots) + (ItemSlots * ItemSlot Cost) I.E., An NPC with 5 ItemSlots and 5 Units would
+# be: ((5 * 5)[25] * 5)[125] + (5 * 100)[500] = 625
+# RefundPercentage is how many money to refund the owner either when removing or downgrading the npc.  50% will give half
+# of their money back. 
+Prices:
+  ItemSlot: 100
+  Unit: 5
+  RefundPercentage: 50
+
+# UnitStack is how big a stack size per unit.  an NPC with 5 Units and a UnitStack of 64 will hold 320 (5*64) items per slot.
+UnitStack: 64
+
+# Name prefix to put before NPC Names and Suffix to put after NPC Names.
+NPC:
+  Prefix: "[NPC]"
+  Suffix: ""
+
+  # DB
+DB:
+  # For MySQL 
+  Driver: "com.mysql.jdbc.Driver"
+  Database: "jdbc:mysql://localhost:3306/minecraft"
+  User: "user"
+  Pass: "pass"
+# This is the configuration for maxium allowed NPCs based on
+# Permissions or GroupManager FakePermissions AKA EssentialsGroupBridge
+# It is sectioned into 2 sections, Groups and Players.  Either
+# configuration tree takes the respective name with Count as the value
+# holder.  Examples shown below.
+# 0 means none
+# -1 means Unlimited
+# Any other negative number would equate to unlimited
+# Any posative number would be the limit of NPC's the player may be
+# owner flagged on.
+
+MaxNPCGroupsCount:
+    Default: 2
+    Donator: 5
+    Moderator: 10
+    Admin: -1
+MaxNPCPPlayersCount:
+    matcat: -1
