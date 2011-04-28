@@ -65,7 +65,6 @@ import redecouverte.npcspawner.NpcSpawner;
 */
 import com.nijiko.coelho.iConomy.iConomy;
 import com.nijiko.coelho.iConomy.system.Account;
-import com.nijiko.permissions.PermissionHandler;
 import com.nijiko.permissions.*;
 
 public class NPCTrader extends JavaPlugin {
@@ -82,6 +81,7 @@ public class NPCTrader extends JavaPlugin {
 	public NPCManager npcm;
 	public static iConomy iC = null;
 	public HashMap NPCInteract = new HashMap();
+	public HashMap NPCL = new HashMap<String, NPCObj>(); // Temp hashmap for NPC Locations
 	public int VisibleNPC;
 	private static final Yaml yaml = new Yaml(new SafeConstructor());
 	private static Settings settings;
@@ -342,8 +342,11 @@ public class NPCTrader extends JavaPlugin {
 			// Event.Priority.Monitor, this);
 			 * 
 			 */
-			// pm.registerEvent(Type.CHUNK_LOAD, this.chunkListener, Event.Priority.Monitor, this);
-			pm.registerEvent(Type.PLAYER_MOVE, this.playerListener, Event.Priority.Monitor,this);
+			chunkListener = new NPCChunkListener(this);
+			pm.registerEvent(Type.CHUNK_LOAD, this.chunkListener, Event.Priority.Monitor, this);
+			pm.registerEvent(Type.CHUNK_UNLOAD, this.chunkListener, Event.Priority.Monitor, this);
+
+			//pm.registerEvent(Type.PLAYER_MOVE, this.playerListener, Event.Priority.Monitor,this);
 			//pm.registerEvent(Type.CHUNK_UNLOAD, this.playerListener, Event.Priority.Monitor, this);
 
 			NEL = new NPCTraderEntityListener(this);

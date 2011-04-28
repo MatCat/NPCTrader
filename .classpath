@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/mysql-connector-java-5.1.15-bin.jar"/>
+	<classpathentry kind="lib" path="C:/minecraft/CraftBukkit/minecraft/plugins/WorldEdit.jar"/>
+	<classpathentry kind="lib" path="C:/minecraft/CraftBukkit/minecraft/plugins/WorldGuard.jar"/>
+	<classpathentry kind="lib" path="C:/minecraft/CraftBukkit/minecraft/plugins/iConomy.jar"/>
+	<classpathentry kind="lib" path="C:/minecraft/CraftBukkit/minecraft/plugins/EssentialsGroupBridge.jar"/>
+	<classpathentry kind="lib" path="C:/Users/MatCat/Downloads/bukkit-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/minecraft/CraftBukkit/minecraft/craftbukkit.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -7,6 +7,7 @@ import java.util.List;
 import com.MatCat.NPCTrader.ItemDB;
 import com.nijiko.coelho.iConomy.iConomy;
 
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -1001,17 +1002,24 @@ public class NPCTraderMySQL {
 					// + " - Checking for World: " + world.getName());
 					if (world.getName().equalsIgnoreCase(
 							resultSet.getString("WorldName").trim())) {
+						// We need to see if we are in a chunk that is loaded...
 						Location l = new Location(world,
 								resultSet.getDouble("PosX"),
 								resultSet.getDouble("PosY"),
 								resultSet.getDouble("PosZ"),
 								resultSet.getFloat("PosPitch"),
 								resultSet.getFloat("PosYaw"));
-						NPCEntity hnpc = parent.npcm.spawnNPC(
-								parent.getSettings().NPC("Prefix")
-										+ resultSet.getString("NPCName")
-										+ parent.getSettings().NPC("Suffix"),
-								l, resultSet.getString("ID"));
+							//We need to stick it in the global NPCObj
+						NPCObj no = new NPCObj(resultSet.getString("ID"),l.getX(),l.getY(),l.getZ(),world.getName());
+						parent.NPCL.put(resultSet.getString("ID"), no);
+						if (world.isChunkLoaded(world.getChunkAt(l))) {
+							//This npc is good to be loaded!
+							NPCEntity hnpc = parent.npcm.spawnNPC(
+									parent.getSettings().NPC("Prefix")
+											+ resultSet.getString("NPCName")
+											+ parent.getSettings().NPC("Suffix"),
+									l, resultSet.getString("ID"));
+						}
 						++NPCCount;
 					}
 				}
